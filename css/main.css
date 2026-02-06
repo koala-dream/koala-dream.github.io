@@ -219,6 +219,10 @@ body {
 }
 body {
   background: url("/images/background.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: 50% 50%;
+  background-size: cover;
   box-sizing: border-box;
   color: var(--text-color);
   font-family: Noto Sans Simplified Chinese, 'PingFang SC', 'Microsoft YaHei', sans-serif;
@@ -1279,7 +1283,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #ffb60b;
+    background: #ffd7a7;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
