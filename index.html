@@ -12,12 +12,14 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Simplified+Chinese:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=LXGW+WenKai+TC:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap&subset=latin,latin-ext">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/purple/pace-theme-center-atom.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"vs","dark":"vs"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"vs","dark":"vs"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
 
     <meta name="description" content="爱学习，爱进步">
 <meta property="og:type" content="website">
@@ -51,11 +53,14 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
 <script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/bookmark.js" defer></script>
 
-  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
 
 
 
 
+
+  <script src="/js/third-party/pace.js" defer></script>
 
 
   
@@ -95,6 +100,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -103,11 +109,37 @@
 
 <nav class="site-nav">
   <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-schedule"><a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </header>
         
@@ -141,9 +173,14 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">1</span>
           <span class="site-state-item-name">日志</span>
         </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
 </div>
@@ -168,7 +205,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://example.com/2026/02/06/hello-world/">
+    <link itemprop="mainEntityOfPage" href="https://example.com/2026/01/26/2026-1-26-I2C%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -186,7 +223,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2026/02/06/hello-world/" class="post-title-link" itemprop="url">tags</a>
+          <a href="/2026/01/26/2026-1-26-I2C%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="post-title-link" itemprop="url">I2C基础知识</a>
         </h2>
 
         <div class="post-meta-container">
@@ -196,9 +233,24 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2026-02-06 11:20:10 / 修改时间：12:31:54" itemprop="dateCreated datePublished" datetime="2026-02-06T11:20:10+08:00">2026-02-06</time>
+      <time title="创建时间：2026-01-26 12:25:10" itemprop="dateCreated datePublished" datetime="2026-01-26T12:25:10+08:00">2026-01-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-02-06 22:18:28" itemprop="dateModified" datetime="2026-02-06T22:18:28+08:00">2026-02-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/I2C%E9%A9%B1%E5%8A%A8/" itemprop="url" rel="index"><span itemprop="name">I2C驱动</span></a>
+        </span>
     </span>
 
   
@@ -208,14 +260,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.3k</span>
+      <span>1.6k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
+      <span>3 分钟</span>
     </span>
 </div>
 
@@ -226,162 +278,20 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>hey rk3568</p>
-<p>图片有显示吗？我已经放在md里了</p>
-<ol>
-<li>简述I2C总线的基本原理。 (提示：两线制、同步、半双工、多主多从、地址寻址)</li>
-</ol>
-<p>(1)     IIC使用SCL和SDA两根线，SCL用于同步，SDA负责数据传输</p>
+          <h1 id="简述I2C总线的基本原理。-提示：两线制、同步、半双工、多主多从、地址寻址"><a href="#简述I2C总线的基本原理。-提示：两线制、同步、半双工、多主多从、地址寻址" class="headerlink" title="简述I2C总线的基本原理。 (提示：两线制、同步、半双工、多主多从、地址寻址)"></a><em>简述I2C总线的基本原理。 (提示：两线制、同步、半双工、多主多从、地址寻址)</em></h1><p>(1)     IIC使用SCL和SDA两根线，SCL用于同步，SDA负责数据传输</p>
 <p>(2)    是半双工机制（主从机之间不能同时传输数据。）</p>
 <p>(3)    IIC是多主多从的协议</p>
 <p>(4)    地址寻址可以要么7位地址，要么10位地址</p>
-<ol start="2">
-<li>为什么I2C总线需要上拉电阻？其阻值如何选择？</li>
-</ol>
-<p>(1)    因为需要实现多从机的机制，IIC的引脚需要使用开漏模式挂载到IIC总线上，开漏模式下的高电平由上拉电阻实现。如果不使用开漏输出模式，当主机访问从机1时，从机1拉低总线电平，而从机2会输出高电平，表示不应答，但是这样的话，会使得总线短路。开漏模式下，从机2释放总线（输出高阻态），不会影响到从机1的拉低，因为上拉电阻的存在，总线不会短路。</p>
-<p>(2)    根据IIC协议的速度需求选择阻值</p>
-<ol start="3">
-<li>详细描述I2C通信的时序：起始条件、停止条件、数据有效性及应答机制。</li>
-</ol>
-<p>(1)    起始信号：当SCL处于高电平时，SDA给出从高到低的下降沿电平</p>
-<p>(2)    停止信号：当SCL处于高电平时，SDA给出从低到高的上升沿电平</p>
-<p>(3)    当SCL处于低电平时，可以改变SDA的值，SCL处于高电平时，可以进行采样</p>
-<p>(4)    在接收完一帧数据后，从机&#x2F;主机应当选择拉低SDA总线进行应答，如果选择不应答，释放总线。</p>
-<ol start="4">
-<li>什么是重复起始条件？它有什么作用？</li>
-</ol>
-<p>(1)    在不结束一次通讯的情况下，再次发起起始信号，但是这个重复起始信号的发起和起始信号不完全相同，因为在主机发送完一帧数据，从机应答后，SDA处于低电平状态，主机将SCL从高电平拉到低电平。这时，需要绕过终止信号，所以SCL需要先被拉低，然后拉高SDA，之后再拉高SCL（终于绕过终止信号，恢复到初始状态了，两个都为高电平），这个时候再发起始信号，就是一次完整的重复起始条件了。</p>
-<p>(2)    可以进行由写指令到读指令的转化。</p>
-<ol start="5">
-<li><p>I2C支持哪些速率模式？实际选择时考虑哪些因素？ </p>
-</li>
-<li><p>I2C的地址有几位？7位地址的可用范围是多少？什么是保留地址？</p>
-</li>
-</ol>
-<p>(1)    7位或者10位</p>
-<p>(2)    理论上是0-127，总共是128个地址。</p>
-<p>(3)    是一些特殊功能的地址，比如说复位功能，广播功能。</p>
-<ol start="7">
-<li><p>为什么I2C要求使用开漏输出，而不能用推挽输出？ (需理解总线冲突、短路风险、多主机仲裁)</p>
-</li>
-<li><p>I2C总线上最多能连接多少个设备？实际限制是什么？ (提示：地址空间限制 vs 总线电容负载限制)</p>
-</li>
-<li><p>解释什么是“时钟拉伸”。它是如何工作的？有什么作用？</p>
-</li>
-<li><p>I2C总线的最大传输距离受哪些因素影响？如何优化？</p>
-</li>
-<li><p>I2C如何实现多主机通信？详细解释总线仲裁和时钟同步机制。 </p>
-</li>
-<li><p>如果总线上有两个从设备地址相同，会发生什么？如何解决？</p>
-</li>
-<li><p>主机发送地址0x50和主机发送地址0x52同时发起通信，谁将赢得仲裁？请按位分析过程。</p>
-</li>
-<li><p>比较I2C与SPI协议的优缺点。在什么场景下优先选择I2C？ </p>
-</li>
-<li><p>列举I2C通信中常见的故障及解决方法（如总线死锁、ACK丢失、时序问题等）。</p>
-</li>
-<li><p>如果发现I2C通信不稳定，你的调试步骤是什么？会使用什么工具？ (如示波器、逻辑分析仪)</p>
-</li>
-<li><p>描述一次你调试I2C总线问题的实际经历，包括问题现象、分析思路和最终解决方案。 (这是展现你工程能力的绝佳机会)</p>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://example.com/2026/02/06/hello-world-%E5%A4%87%E4%BB%BD/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="考拉梦">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Koala's blogs">
-      <meta itemprop="description" content="爱学习，爱进步">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | Koala's blogs">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2026/02/06/hello-world-%E5%A4%87%E4%BB%BD/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2026-02-06 10:30:34" itemprop="dateCreated datePublished" datetime="2026-02-06T10:30:34+08:00">2026-02-06</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>367</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
+<p><font color="#ff4444">🔴 重要内容</font></p>
+<p><img src="/../images/lubancat2(v1-v2)%E5%BC%95%E8%84%9A%E5%9B%BE.png"></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2026/01/26/2026-1-26-I2C%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
