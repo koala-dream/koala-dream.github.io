@@ -69,7 +69,7 @@
 
 
 
-
+<script async src="/lib/fireworks.js"></script>
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
@@ -174,7 +174,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -190,6 +190,14 @@
       </div>
   </nav>
 </div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/koala-dream" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;koala-dream" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:3592923948@qq.com" title="E-Mail → mailto:3592923948@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
 
         </div>
       </div>
@@ -202,6 +210,108 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://example.com/2026/02/07/usb%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="考拉梦">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Koala's blogs">
+      <meta itemprop="description" content="爱学习，爱进步">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Koala's blogs">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/02/07/usb%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-02-07 09:30:01 / 修改时间：09:35:01" itemprop="dateCreated datePublished" datetime="2026-02-07T09:30:01+08:00">2026-02-07</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>460</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="设备枚举阶段-usb设备插入电脑后会做的事情"><a href="#设备枚举阶段-usb设备插入电脑后会做的事情" class="headerlink" title="设备枚举阶段-usb设备插入电脑后会做的事情"></a>设备枚举阶段-usb设备插入电脑后会做的事情</h1><ol>
+<li><p>当一个usb设备，比如说u盘，插到Linux板子里后，<span style="color: pink; font-size: 20px;">它的地址会被强制配置成0</span>，pc不知道这个设备的具体地址，就会去0地址处寻找，又因为整个usb链路上<span style="color: blue; font-size: 20px;">只有这个新加入的usb设备地址是0</span>，所以就可以以此访问它</p>
+</li>
+<li><p>通过对0地址的配置，读取，pc会为这个新加入的设备<span style="color: green; font-size: 20px;">分配一个id号</span>（每一个usb设备有一个id号，范围是1-127）</p>
+</li>
+<li><p>这个被分配出来的id号，就是令牌包、数据包里的7为地址！<span style="color: red; font-size: 20px;">系统通过这个地址寻找到设备！</span></p>
+</li>
+</ol>
+<h1 id="具体过程如下：USB设备插入板卡后，Linux系统会做的事情"><a href="#具体过程如下：USB设备插入板卡后，Linux系统会做的事情" class="headerlink" title="具体过程如下：USB设备插入板卡后，Linux系统会做的事情"></a>具体过程如下：USB设备插入板卡后，Linux系统会做的事情</h1><ol>
+<li><p>USB接口两根线电平发生变换，会被内核usb控制器驱动程序感知到，在hub_thread中去读取设备描述符，配置描述符</p>
+</li>
+<li><p>通过读取到的设备描述符，配置描述符，usb控制器驱动程序就知道这个设备是什么设备</p>
+</li>
+<li><p>系统会根据之前获得的 “三要素”（类代码、厂商ID、产品ID），去匹配被编译进内核的驱动程序</p>
+</li>
+<li><p>匹配到驱动后，在probe函数里可能会去做各种事情，比如说注册进input子系统，或者作为块设备（u盘）注册，注册使用接口</p>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -376,5 +486,12 @@
   <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
 </noscript>
 
+  
+  
+  
+  
+
+
+  
 </body>
 </html>

@@ -1,6 +1,6 @@
 :root {
   --body-bg-color: #eee;
-  --content-bg-color: #fff;
+  --content-bg-color: #faf9de;
   --card-bg-color: #f5f5f5;
   --text-color: #333;
   --selection-bg: #262a30;
@@ -29,7 +29,7 @@
 @supports (color: light-dark(#f00, #f00)) {
   :root {
     --body-bg-color: light-dark(#eee, #282828);
-    --content-bg-color: light-dark(#fff, #333);
+    --content-bg-color: light-dark(#faf9de, #333);
     --card-bg-color: light-dark(#f5f5f5, #555);
     --text-color: light-dark(#333, #333);
     --selection-bg: light-dark(#262a30, #bbb);
@@ -218,10 +218,11 @@ body {
   height: 100%;
 }
 body {
+  background-color: #c7edcc;
   box-sizing: border-box;
   color: var(--text-color);
   font-family: Noto Sans Simplified Chinese, 'PingFang SC', 'Microsoft YaHei', sans-serif;
-  font-size: 18px;
+  font-size: 13px;
   line-height: 2;
   min-height: 100%;
   position: relative;
@@ -1115,7 +1116,7 @@ pre code {
 }
 .site-subtitle {
   color: #ddd;
-  font-size: 0.8125em;
+  font-size: 0.875em;
   margin: 10px 10px 0;
 }
 .use-motion .site-title,
@@ -1278,7 +1279,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #d177ff;
+    background: #ffcdab;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -1706,7 +1707,7 @@ pre code {
   }
 }
 .back-to-top {
-  font-size: 12px;
+  font-size: 20px;
   align-items: center;
   bottom: -100px;
   color: #fff;
@@ -2916,4 +2917,10 @@ header.header {
   .comments {
     padding: 10px 12px;
   }
+}
+.fireworks {
+  left: 0;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
 }

@@ -21,25 +21,27 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"vs","dark":"vs"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="爱学习，爱进步">
-<meta property="og:type" content="website">
+    <meta name="description" content="设备枚举阶段-usb设备插入电脑后会做的事情 当一个usb设备，比如说u盘，插到Linux板子里后，它的地址会被强制配置成0，pc不知道这个设备的具体地址，就会去0地址处寻找，又因为整个usb链路上只有这个新加入的usb设备地址是0，所以就可以以此访问它  通过对0地址的配置，读取，pc会为这个新加入的设备分配一个id号（每一个usb设备有一个id号，范围是1-127）  这个被分配出来的id号，">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Koala&#39;s blogs">
-<meta property="og:url" content="https://example.com/archives/2026/01/index.html">
+<meta property="og:url" content="https://example.com/2026/02/07/usb%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/index.html">
 <meta property="og:site_name" content="Koala&#39;s blogs">
-<meta property="og:description" content="爱学习，爱进步">
+<meta property="og:description" content="设备枚举阶段-usb设备插入电脑后会做的事情 当一个usb设备，比如说u盘，插到Linux板子里后，它的地址会被强制配置成0，pc不知道这个设备的具体地址，就会去0地址处寻找，又因为整个usb链路上只有这个新加入的usb设备地址是0，所以就可以以此访问它  通过对0地址的配置，读取，pc会为这个新加入的设备分配一个id号（每一个usb设备有一个id号，范围是1-127）  这个被分配出来的id号，">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-02-07T01:30:01.766Z">
+<meta property="article:modified_time" content="2026-02-07T01:35:01.839Z">
 <meta property="article:author" content="考拉梦">
 <meta property="article:tag" content="Linux驱动开发，RTOS，Makefile">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://example.com/archives/2026/01/">
+<link rel="canonical" href="https://example.com/2026/02/07/usb%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"archives/2026/01/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://example.com/2026/02/07/usb%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/","path":"2026/02/07/usb基础知识/","title":""}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>归档 | Koala's blogs</title>
+<title> | Koala's blogs</title>
   
 
 
@@ -93,7 +95,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">Koala's blogs</h1>
+      <p class="site-title">Koala's blogs</p>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">学不死就往死里学</p>
@@ -147,7 +149,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -160,6 +162,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BE%E5%A4%87%E6%9E%9A%E4%B8%BE%E9%98%B6%E6%AE%B5-usb%E8%AE%BE%E5%A4%87%E6%8F%92%E5%85%A5%E7%94%B5%E8%84%91%E5%90%8E%E4%BC%9A%E5%81%9A%E7%9A%84%E4%BA%8B%E6%83%85"><span class="nav-number">1.</span> <span class="nav-text">设备枚举阶段-usb设备插入电脑后会做的事情</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B7%E4%BD%93%E8%BF%87%E7%A8%8B%E5%A6%82%E4%B8%8B%EF%BC%9AUSB%E8%AE%BE%E5%A4%87%E6%8F%92%E5%85%A5%E6%9D%BF%E5%8D%A1%E5%90%8E%EF%BC%8CLinux%E7%B3%BB%E7%BB%9F%E4%BC%9A%E5%81%9A%E7%9A%84%E4%BA%8B%E6%83%85"><span class="nav-number">2.</span> <span class="nav-text">具体过程如下：USB设备插入板卡后，Linux系统会做的事情</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -209,49 +212,120 @@
 
     </div>
 
-    <div class="main-inner archive posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
-  
-  
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 2 篇日志。 继续努力。</span>
-      </div>
 
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://example.com/2026/02/07/usb%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="考拉梦">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Koala's blogs">
+      <meta itemprop="description" content="爱学习，爱进步">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Koala's blogs">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
       
-    <div class="collection-year">
-      <span class="collection-header">2026<span class="collection-year-count">2</span></span>
+
+      <time title="创建时间：2026-02-07 09:30:01 / 修改时间：09:35:01" itemprop="dateCreated datePublished" datetime="2026-02-07T09:30:01+08:00">2026-02-07</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>460</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="设备枚举阶段-usb设备插入电脑后会做的事情"><a href="#设备枚举阶段-usb设备插入电脑后会做的事情" class="headerlink" title="设备枚举阶段-usb设备插入电脑后会做的事情"></a>设备枚举阶段-usb设备插入电脑后会做的事情</h1><ol>
+<li><p>当一个usb设备，比如说u盘，插到Linux板子里后，<span style="color: pink; font-size: 20px;">它的地址会被强制配置成0</span>，pc不知道这个设备的具体地址，就会去0地址处寻找，又因为整个usb链路上<span style="color: blue; font-size: 20px;">只有这个新加入的usb设备地址是0</span>，所以就可以以此访问它</p>
+</li>
+<li><p>通过对0地址的配置，读取，pc会为这个新加入的设备<span style="color: green; font-size: 20px;">分配一个id号</span>（每一个usb设备有一个id号，范围是1-127）</p>
+</li>
+<li><p>这个被分配出来的id号，就是令牌包、数据包里的7为地址！<span style="color: red; font-size: 20px;">系统通过这个地址寻找到设备！</span></p>
+</li>
+</ol>
+<h1 id="具体过程如下：USB设备插入板卡后，Linux系统会做的事情"><a href="#具体过程如下：USB设备插入板卡后，Linux系统会做的事情" class="headerlink" title="具体过程如下：USB设备插入板卡后，Linux系统会做的事情"></a>具体过程如下：USB设备插入板卡后，Linux系统会做的事情</h1><ol>
+<li><p>USB接口两根线电平发生变换，会被内核usb控制器驱动程序感知到，在hub_thread中去读取设备描述符，配置描述符</p>
+</li>
+<li><p>通过读取到的设备描述符，配置描述符，usb控制器驱动程序就知道这个设备是什么设备</p>
+</li>
+<li><p>系统会根据之前获得的 “三要素”（类代码、厂商ID、产品ID），去匹配被编译进内核的驱动程序</p>
+</li>
+<li><p>匹配到驱动后，在probe函数里可能会去做各种事情，比如说注册进input子系统，或者作为块设备（u盘）注册，注册使用接口</p>
+</li>
+</ol>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2026-01-26T12:25:10+08:00"
-              content="2026-01-26">
-          01-26
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2026/01/26/2026-1-26-I2C%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" itemprop="url">
-            <span itemprop="name">I2C基础知识</span>
-          </a>
-      </div>
+    <footer class="post-footer">
 
-      
-    </header>
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/01/26/2026-1-26-I2C%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" rel="prev" title="I2C基础知识">
+                  <i class="fa fa-angle-left"></i> I2C基础知识
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
   </article>
+</div>
 
 
-    </div>
-  </div>
-  
-  
-  
+
+
+
 
 </div>
   </main>
