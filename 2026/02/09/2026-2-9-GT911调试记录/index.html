@@ -21,12 +21,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":220,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"vs","dark":"vs"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="GT911重要寄存器控制寄存器：0x8040 配置寄存器（组）：0x8047-0x8100 状态寄存器：0x814E 坐标寄存器（组）：0x8150-0x8177 硬件设施准备通过命令行输入 i2cdetect -y 1 ，可以检测i2c1总线下所有设备的设备地址 鲁班猫2上触摸屏接口 中断引脚是GPIO0_B5 复位引脚是GPIO0_B6  对GT911的操作方法 读操作时序图，高位先行，低位在">
+    <meta name="description" content="GT911重要寄存器控制寄存器：0x8040 配置寄存器（组）：0x8047-0x8100 状态寄存器：0x814E 坐标寄存器（组）：0x8150-0x8177">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GT911在RK3568上的调试记录">
 <meta property="og:url" content="https://example.com/2026/02/09/2026-2-9-GT911%E8%B0%83%E8%AF%95%E8%AE%B0%E5%BD%95/index.html">
 <meta property="og:site_name" content="Koala&#39;s blogs">
-<meta property="og:description" content="GT911重要寄存器控制寄存器：0x8040 配置寄存器（组）：0x8047-0x8100 状态寄存器：0x814E 坐标寄存器（组）：0x8150-0x8177 硬件设施准备通过命令行输入 i2cdetect -y 1 ，可以检测i2c1总线下所有设备的设备地址 鲁班猫2上触摸屏接口 中断引脚是GPIO0_B5 复位引脚是GPIO0_B6  对GT911的操作方法 读操作时序图，高位先行，低位在">
+<meta property="og:description" content="GT911重要寄存器控制寄存器：0x8040 配置寄存器（组）：0x8047-0x8100 状态寄存器：0x814E 坐标寄存器（组）：0x8150-0x8177">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://example.com/images/QQ_1770626077492.png">
 <meta property="og:image" content="https://example.com/images/image-20260209121610785.png">
@@ -34,12 +34,10 @@
 <meta property="og:image" content="https://example.com/images/QQ_1770629287737.png">
 <meta property="og:image" content="https://example.com/images/image-20260210094948586.png">
 <meta property="og:image" content="https://example.com/images/QQ_1770688323297.png">
-<meta property="og:image" content="https://example.com/images/image-20260209231014227.png">
-<meta property="og:image" content="https://example.com/images/image-20260209231105293.png">
 <meta property="og:image" content="https://example.com/2026/02/09/images/89656ed88d1429a0269da6c95307b599.png">
 <meta property="og:image" content="https://example.com/2026/02/09/images/ee6bce70b3cca6b9ee704f9ad5332714.png">
 <meta property="article:published_time" content="2026-02-09T03:34:10.000Z">
-<meta property="article:modified_time" content="2026-02-10T08:52:09.979Z">
+<meta property="article:modified_time" content="2026-02-10T08:53:50.010Z">
 <meta property="article:author" content="考拉">
 <meta property="article:tag" content="I2C">
 <meta name="twitter:card" content="summary">
@@ -269,7 +267,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-02-10 16:52:09" itemprop="dateModified" datetime="2026-02-10T16:52:09+08:00">2026-02-10</time>
+      <time title="修改时间：2026-02-10 16:53:50" itemprop="dateModified" datetime="2026-02-10T16:53:50+08:00">2026-02-10</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -309,6 +307,8 @@
 <p>配置寄存器（组）：0x8047-0x8100</p>
 <p>状态寄存器：0x814E</p>
 <p>坐标寄存器（组）：0x8150-0x8177</p>
+<span id="more"></span>
+
 <h1 id="硬件设施准备"><a href="#硬件设施准备" class="headerlink" title="硬件设施准备"></a>硬件设施准备</h1><p>通过命令行输入 i2cdetect -y 1 ，可以检测i2c1总线下所有设备的设备地址</p>
 <p>鲁班猫2上触摸屏接口</p>
 <p>中断引脚是GPIO0_B5</p>
@@ -332,11 +332,8 @@
 <p>以下是设置地址为0x5D的方法，本次调试只选0x14</p>
 <p><img src="/../images/QQ_1770688323297.png" alt="QQ_1770688323297"></p>
 <h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><ol>
-<li><h2 id="g-GT911-dev-reset-gpio-gpiod-get-optional-client-dev-“reset”-GPIOD-OUT-LOW-申请失败，返回的是NULL，设备树中已经指定reset-gpios"><a href="#g-GT911-dev-reset-gpio-gpiod-get-optional-client-dev-“reset”-GPIOD-OUT-LOW-申请失败，返回的是NULL，设备树中已经指定reset-gpios" class="headerlink" title="g_GT911_dev.reset_gpio &#x3D; gpiod_get_optional(&amp;client-&gt;dev, “reset”, GPIOD_OUT_LOW);申请失败，返回的是NULL，设备树中已经指定reset-gpios &#x3D; &lt;&amp;gpio0 RK_PB6 GPIO_ACTIVE_HIGH&gt;;"></a>g_GT911_dev.reset_gpio &#x3D; gpiod_get_optional(&amp;client-&gt;dev, “reset”, GPIOD_OUT_LOW);申请失败，返回的是NULL，设备树中已经指定reset-gpios &#x3D; &lt;&amp;gpio0 RK_PB6 GPIO_ACTIVE_HIGH&gt;;</h2>发现不是问题，是因为我调用了两次 gpiod_get_optional(&amp;client-&gt;dev, “reset”, 0);导致的哈哈</li>
-</ol>
-<p><img src="/../images/image-20260209231014227.png" alt="image-20260209231014227"></p>
-<p><img src="/../images/image-20260209231105293.png" alt="image-20260209231105293"></p>
-<ol start="2">
+<li><h2 id="g-GT911-dev-reset-gpio-gpiod-get-optional-client-dev-“reset”-GPIOD-OUT-LOW-申请失败，返回的是NULL，设备树中已经指定reset-gpios"><a href="#g-GT911-dev-reset-gpio-gpiod-get-optional-client-dev-“reset”-GPIOD-OUT-LOW-申请失败，返回的是NULL，设备树中已经指定reset-gpios" class="headerlink" title="g_GT911_dev.reset_gpio &#x3D; gpiod_get_optional(&amp;client-&gt;dev, “reset”, GPIOD_OUT_LOW);申请失败，返回的是NULL，设备树中已经指定reset-gpios &#x3D; &lt;&amp;gpio0 RK_PB6 GPIO_ACTIVE_HIGH&gt;;"></a>g_GT911_dev.reset_gpio &#x3D; gpiod_get_optional(&amp;client-&gt;dev, “reset”, GPIOD_OUT_LOW);申请失败，返回的是NULL，设备树中已经指定reset-gpios &#x3D; &lt;&amp;gpio0 RK_PB6 GPIO_ACTIVE_HIGH&gt;;</h2><p>发现不是问题，是因为我调用了两次 gpiod_get_optional(&amp;client-&gt;dev, “reset”, 0);导致的哈哈</p>
+</li>
 <li><h2 id="怎么查看某一个引脚被复位成了什么功能呢？"><a href="#怎么查看某一个引脚被复位成了什么功能呢？" class="headerlink" title="怎么查看某一个引脚被复位成了什么功能呢？"></a>怎么查看某一个引脚被复位成了什么功能呢？</h2></li>
 </ol>
 <p>方法1：查看GPIO的复用功能（mux function）</p>
