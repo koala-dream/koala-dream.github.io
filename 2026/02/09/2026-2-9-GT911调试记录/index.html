@@ -36,8 +36,12 @@
 <meta property="og:image" content="https://example.com/images/QQ_1770688323297.png">
 <meta property="og:image" content="https://example.com/2026/02/09/images/89656ed88d1429a0269da6c95307b599.png">
 <meta property="og:image" content="https://example.com/2026/02/09/images/ee6bce70b3cca6b9ee704f9ad5332714.png">
+<meta property="og:image" content="https://example.com/images/d62f7bc733e5f52ebd29d953f7507b40.png">
+<meta property="og:image" content="https://example.com/images/caef95d280e5dd434b5406563a2b65c5.png">
+<meta property="og:image" content="https://example.com/images/5cfe2928c8b2514668490b8b85178b98.png">
+<meta property="og:image" content="https://example.com/images/4b1d5f4229c51d19dcd36168a8fe7e41.png">
 <meta property="article:published_time" content="2026-02-09T03:34:10.000Z">
-<meta property="article:modified_time" content="2026-02-10T09:37:47.925Z">
+<meta property="article:modified_time" content="2026-02-11T01:54:37.593Z">
 <meta property="article:author" content="考拉">
 <meta property="article:tag" content="I2C">
 <meta name="twitter:card" content="summary">
@@ -170,7 +174,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#GT911%E9%87%8D%E8%A6%81%E5%AF%84%E5%AD%98%E5%99%A8"><span class="nav-number">1.</span> <span class="nav-text">GT911重要寄存器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A1%AC%E4%BB%B6%E8%AE%BE%E6%96%BD%E5%87%86%E5%A4%87"><span class="nav-number">2.</span> <span class="nav-text">硬件设施准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AF%B9GT911%E7%9A%84%E6%93%8D%E4%BD%9C%E6%96%B9%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">对GT911的操作方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%BB%E6%93%8D%E4%BD%9C%E6%97%B6%E5%BA%8F%E5%9B%BE%EF%BC%8C%E9%AB%98%E4%BD%8D%E5%85%88%E8%A1%8C%EF%BC%8C%E4%BD%8E%E4%BD%8D%E5%9C%A8%E5%90%8E"><span class="nav-number">3.1.</span> <span class="nav-text">读操作时序图，高位先行，低位在后</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%99i2c%E9%80%9A%E4%BF%A1%E6%A1%86%E6%9E%B6%EF%BC%8C%E8%83%BD%E5%A4%9F%E8%AF%BB%E5%88%B0GT911%E8%8A%AF%E7%89%87%E7%9A%84ID%E5%8F%B7%EF%BC%88%E9%9C%80%E8%A6%81%E5%8F%82%E8%80%83%E6%89%8B%E5%86%8C%EF%BC%8C%E7%9C%8B%E7%9C%8BID%E5%8F%B7%E5%9C%A8%E5%93%AA%E4%B8%AA%E5%AF%84%E5%AD%98%E5%99%A8%E9%87%8C%EF%BC%89"><span class="nav-number">3.2.</span> <span class="nav-text">写i2c通信框架，能够读到GT911芯片的ID号（需要参考手册，看看ID号在哪个寄存器里）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A1%AE%E8%AE%A4%E4%B8%AD%E6%96%AD%E5%8F%91%E7%94%9F%E7%9A%84%E6%96%B9%E5%BC%8F%EF%BC%88%E6%9F%A5%E8%AF%A2%E6%89%8B%E5%86%8C%EF%BC%89"><span class="nav-number">3.3.</span> <span class="nav-text">确认中断发生的方式（查询手册）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GT911%E6%9C%89%E4%B8%A4%E4%B8%AA%E5%9C%B0%E5%9D%80%E5%8F%AF%E9%80%89%EF%BC%8C%E4%BB%A5%E4%B8%8B%E6%98%AF%E6%8A%8A%E5%9C%B0%E5%9D%80%E8%AE%BE%E7%BD%AE%E4%B8%BA0x14%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%8C%E5%AF%B9%E5%BA%94%E7%9A%848%E4%BD%8D%E5%9C%B0%E5%9D%80%E6%98%AF0x28"><span class="nav-number">3.4.</span> <span class="nav-text">GT911有两个地址可选，以下是把地址设置为0x14的方法，对应的8位地址是0x28</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-number">4.</span> <span class="nav-text">问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#g-GT911-dev-reset-gpio-gpiod-get-optional-client-dev-%E2%80%9Creset%E2%80%9D-GPIOD-OUT-LOW-%E7%94%B3%E8%AF%B7%E5%A4%B1%E8%B4%A5%EF%BC%8C%E8%BF%94%E5%9B%9E%E7%9A%84%E6%98%AFNULL%EF%BC%8C%E8%AE%BE%E5%A4%87%E6%A0%91%E4%B8%AD%E5%B7%B2%E7%BB%8F%E6%8C%87%E5%AE%9Areset-gpios"><span class="nav-number">4.1.</span> <span class="nav-text">g_GT911_dev.reset_gpio &#x3D; gpiod_get_optional(&amp;client-&gt;dev, “reset”, GPIOD_OUT_LOW);申请失败，返回的是NULL，设备树中已经指定reset-gpios &#x3D; &lt;&amp;gpio0 RK_PB6 GPIO_ACTIVE_HIGH&gt;;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%8E%E4%B9%88%E6%9F%A5%E7%9C%8B%E6%9F%90%E4%B8%80%E4%B8%AA%E5%BC%95%E8%84%9A%E8%A2%AB%E5%A4%8D%E4%BD%8D%E6%88%90%E4%BA%86%E4%BB%80%E4%B9%88%E5%8A%9F%E8%83%BD%E5%91%A2%EF%BC%9F"><span class="nav-number">4.2.</span> <span class="nav-text">怎么查看某一个引脚被复位成了什么功能呢？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E4%B8%80%E5%9C%A8%E8%AE%BE%E5%A4%87%E6%A0%91%E4%B8%AD%E6%B7%BB%E5%8A%A0-irq-gpios-%EF%BC%8C%E5%B0%B1%E6%97%A0%E6%B3%95%E8%BF%9B%E8%A1%8Cprobe%E5%87%BD%E6%95%B0%E4%BA%86%EF%BC%9F%E6%97%A0%E6%B3%95%E5%92%8C%E9%A9%B1%E5%8A%A8%E8%BF%9B%E8%A1%8C%E5%8C%B9%E9%85%8D"><span class="nav-number">4.3.</span> <span class="nav-text">为什么我一在设备树中添加 irq-gpios   &#x3D; &lt;&amp;gpio0 RK_PB5 GPIO_ACTIVE_HIGH&gt;;，就无法进行probe函数了？无法和驱动进行匹配</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#GT911%E9%87%8D%E8%A6%81%E5%AF%84%E5%AD%98%E5%99%A8"><span class="nav-number">1.</span> <span class="nav-text">GT911重要寄存器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A1%AC%E4%BB%B6%E8%AE%BE%E6%96%BD%E5%87%86%E5%A4%87"><span class="nav-number">2.</span> <span class="nav-text">硬件设施准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AF%B9GT911%E7%9A%84%E6%93%8D%E4%BD%9C%E6%96%B9%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">对GT911的操作方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%BB%E6%93%8D%E4%BD%9C%E6%97%B6%E5%BA%8F%E5%9B%BE%EF%BC%8C%E9%AB%98%E4%BD%8D%E5%85%88%E8%A1%8C%EF%BC%8C%E4%BD%8E%E4%BD%8D%E5%9C%A8%E5%90%8E"><span class="nav-number">3.1.</span> <span class="nav-text">读操作时序图，高位先行，低位在后</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%99i2c%E9%80%9A%E4%BF%A1%E6%A1%86%E6%9E%B6%EF%BC%8C%E8%83%BD%E5%A4%9F%E8%AF%BB%E5%88%B0GT911%E8%8A%AF%E7%89%87%E7%9A%84ID%E5%8F%B7%EF%BC%88%E9%9C%80%E8%A6%81%E5%8F%82%E8%80%83%E6%89%8B%E5%86%8C%EF%BC%8C%E7%9C%8B%E7%9C%8BID%E5%8F%B7%E5%9C%A8%E5%93%AA%E4%B8%AA%E5%AF%84%E5%AD%98%E5%99%A8%E9%87%8C%EF%BC%89"><span class="nav-number">3.2.</span> <span class="nav-text">写i2c通信框架，能够读到GT911芯片的ID号（需要参考手册，看看ID号在哪个寄存器里）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A1%AE%E8%AE%A4%E4%B8%AD%E6%96%AD%E5%8F%91%E7%94%9F%E7%9A%84%E6%96%B9%E5%BC%8F%EF%BC%88%E6%9F%A5%E8%AF%A2%E6%89%8B%E5%86%8C%EF%BC%89"><span class="nav-number">3.3.</span> <span class="nav-text">确认中断发生的方式（查询手册）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GT911%E6%9C%89%E4%B8%A4%E4%B8%AA%E5%9C%B0%E5%9D%80%E5%8F%AF%E9%80%89%EF%BC%8C%E4%BB%A5%E4%B8%8B%E6%98%AF%E6%8A%8A%E5%9C%B0%E5%9D%80%E8%AE%BE%E7%BD%AE%E4%B8%BA0x14%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%8C%E5%AF%B9%E5%BA%94%E7%9A%848%E4%BD%8D%E5%9C%B0%E5%9D%80%E6%98%AF0x28"><span class="nav-number">3.4.</span> <span class="nav-text">GT911有两个地址可选，以下是把地址设置为0x14的方法，对应的8位地址是0x28</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-number">4.</span> <span class="nav-text">问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#g-GT911-dev-reset-gpio-gpiod-get-optional-client-dev-%E2%80%9Creset%E2%80%9D-GPIOD-OUT-LOW-%E7%94%B3%E8%AF%B7%E5%A4%B1%E8%B4%A5%EF%BC%8C%E8%BF%94%E5%9B%9E%E7%9A%84%E6%98%AFNULL%EF%BC%8C%E8%AE%BE%E5%A4%87%E6%A0%91%E4%B8%AD%E5%B7%B2%E7%BB%8F%E6%8C%87%E5%AE%9Areset-gpios"><span class="nav-number">4.1.</span> <span class="nav-text">g_GT911_dev.reset_gpio &#x3D; gpiod_get_optional(&amp;client-&gt;dev, “reset”, GPIOD_OUT_LOW);申请失败，返回的是NULL，设备树中已经指定reset-gpios &#x3D; &lt;&amp;gpio0 RK_PB6 GPIO_ACTIVE_HIGH&gt;;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%8E%E4%B9%88%E6%9F%A5%E7%9C%8B%E6%9F%90%E4%B8%80%E4%B8%AA%E5%BC%95%E8%84%9A%E8%A2%AB%E5%A4%8D%E4%BD%8D%E6%88%90%E4%BA%86%E4%BB%80%E4%B9%88%E5%8A%9F%E8%83%BD%E5%91%A2%EF%BC%9F"><span class="nav-number">4.2.</span> <span class="nav-text">怎么查看某一个引脚被复位成了什么功能呢？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E4%B8%80%E5%9C%A8%E8%AE%BE%E5%A4%87%E6%A0%91%E4%B8%AD%E6%B7%BB%E5%8A%A0-irq-gpios-%EF%BC%8C%E5%B0%B1%E6%97%A0%E6%B3%95%E8%BF%9B%E8%A1%8Cprobe%E5%87%BD%E6%95%B0%E4%BA%86%EF%BC%9F%E6%97%A0%E6%B3%95%E5%92%8C%E9%A9%B1%E5%8A%A8%E8%BF%9B%E8%A1%8C%E5%8C%B9%E9%85%8D"><span class="nav-number">4.3.</span> <span class="nav-text">为什么我一在设备树中添加 irq-gpios   &#x3D; &lt;&amp;gpio0 RK_PB5 GPIO_ACTIVE_HIGH&gt;;，就无法进行probe函数了？无法和驱动进行匹配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3"><span class="nav-number">4.4.</span> <span class="nav-text">问题解决</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -267,7 +271,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-02-10 17:37:47" itemprop="dateModified" datetime="2026-02-10T17:37:47+08:00">2026-02-10</time>
+      <time title="修改时间：2026-02-11 09:54:37" itemprop="dateModified" datetime="2026-02-11T09:54:37+08:00">2026-02-11</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -286,7 +290,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.6k</span>
+      <span>1.7k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -364,6 +368,18 @@
 
 <img src="../images/ee6bce70b3cca6b9ee704f9ad5332714.png" style="zoom: 33%;" />
 
+<ol start="4">
+<li><h2 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h2></li>
+</ol>
+<p>是因为iic总线匹配原则，同意只匹配逗号之后的字符串</p>
+<p>线索：我去内核看了一下，发现这里对逗号进行了操作，就是把逗号后面的字符串，当成这个i2c设备的名字了</p>
+<p><img src="/../images/d62f7bc733e5f52ebd29d953f7507b40.png" alt="d62f7bc733e5f52ebd29d953f7507b40"></p>
+<p>这个是i2c最外层的匹配函数，框起来的那个本来就是用来匹配全部字符串的</p>
+<p><img src="/../images/caef95d280e5dd434b5406563a2b65c5.png" alt="caef95d280e5dd434b5406563a2b65c5"></p>
+<p>i2c总线相比最普通的那个platform平台总线，多了这个名字匹配</p>
+<p><img src="/../images/5cfe2928c8b2514668490b8b85178b98.png" alt="5cfe2928c8b2514668490b8b85178b98"></p>
+<p><img src="/../images/4b1d5f4229c51d19dcd36168a8fe7e41.png" alt="4b1d5f4229c51d19dcd36168a8fe7e41"></p>
+
     </div>
 
     
@@ -379,11 +395,14 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2026/02/09/2026-2-9-input%E5%AD%90%E7%B3%BB%E7%BB%9F/" rel="prev" title="input子系统">
-                  <i class="fa fa-angle-left"></i> input子系统
+                <a href="/2026/02/05/2026-2-8-usb%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" rel="prev" title="USB基础知识">
+                  <i class="fa fa-angle-left"></i> USB基础知识
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2026/02/09/2026-2-9-input%E5%AD%90%E7%B3%BB%E7%BB%9F/" rel="next" title="input子系统">
+                  input子系统 <i class="fa fa-angle-right"></i>
+                </a>
             </div>
           </div>
     </footer>
