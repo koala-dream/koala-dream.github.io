@@ -21,27 +21,27 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":220,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"vs","dark":"vs"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="山雾之中，有一个老头在磨石，孤零零的，一个人">
+    <meta name="description" content="SGP30优化： 使用标准 Linux 错误码（如 -EREMOTEIO、-EFAULT、-EINVAL）代替 -1。  日志级别调整,使用 KERN_EMERG 过于夸张，应替换为 KERN_ERR、KERN_INFO 或 dev_err&#x2F;dev_info。  并发访问保护,多个进程同时调用 read 可能导致 I2C 总线竞争。  修复缓冲区溢出风险read 函数中固定 sgp30_">
 <meta property="og:type" content="article">
-<meta property="og:title" content="es8311声卡调试记录">
-<meta property="og:url" content="https://example.com/2026/02/12/2026-2-12-es8311%E5%A3%B0%E5%8D%A1%E8%B0%83%E8%AF%95%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:title" content="Koala&#39;s blogs">
+<meta property="og:url" content="https://example.com/2026/02/16/2026-2-16-SGP30%E4%BC%98%E5%8C%96%E8%AE%B0%E5%BD%95/index.html">
 <meta property="og:site_name" content="Koala&#39;s blogs">
-<meta property="og:description" content="山雾之中，有一个老头在磨石，孤零零的，一个人">
+<meta property="og:description" content="SGP30优化： 使用标准 Linux 错误码（如 -EREMOTEIO、-EFAULT、-EINVAL）代替 -1。  日志级别调整,使用 KERN_EMERG 过于夸张，应替换为 KERN_ERR、KERN_INFO 或 dev_err&#x2F;dev_info。  并发访问保护,多个进程同时调用 read 可能导致 I2C 总线竞争。  修复缓冲区溢出风险read 函数中固定 sgp30_">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-02-12T03:42:10.000Z">
-<meta property="article:modified_time" content="2026-02-12T03:44:02.811Z">
+<meta property="article:published_time" content="2026-02-16T08:10:50.463Z">
+<meta property="article:modified_time" content="2026-02-19T13:21:41.279Z">
 <meta property="article:author" content="考拉">
-<meta property="article:tag" content="I2S">
+<meta property="article:tag" content="Linux驱动开发，RTOS，Makefile">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://example.com/2026/02/12/2026-2-12-es8311%E5%A3%B0%E5%8D%A1%E8%B0%83%E8%AF%95%E8%AE%B0%E5%BD%95/">
+<link rel="canonical" href="https://example.com/2026/02/16/2026-2-16-SGP30%E4%BC%98%E5%8C%96%E8%AE%B0%E5%BD%95/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://example.com/2026/02/12/2026-2-12-es8311%E5%A3%B0%E5%8D%A1%E8%B0%83%E8%AF%95%E8%AE%B0%E5%BD%95/","path":"2026/02/12/2026-2-12-es8311声卡调试记录/","title":"es8311声卡调试记录"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://example.com/2026/02/16/2026-2-16-SGP30%E4%BC%98%E5%8C%96%E8%AE%B0%E5%BD%95/","path":"2026/02/16/2026-2-16-SGP30优化记录/","title":""}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>es8311声卡调试记录 | Koala's blogs</title>
+<title> | Koala's blogs</title>
   
 
 
@@ -148,7 +148,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -161,6 +161,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SGP30%E4%BC%98%E5%8C%96%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">SGP30优化：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#FBbuffer-SPI-ST7789%E4%BC%98%E5%8C%96"><span class="nav-number">2.</span> <span class="nav-text">FBbuffer-SPI-ST7789优化:</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E7%A7%BB%E9%99%A4%E5%86%97%E4%BD%99%E7%9A%84%E5%AD%97%E7%AC%A6%E8%AE%BE%E5%A4%87"><span class="nav-number">2.1.</span> <span class="nav-text">1. 移除冗余的字符设备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E5%88%B7%E5%B1%8F%E7%BA%BF%E7%A8%8B%E7%BC%93%E5%86%B2%E5%8C%BA%E5%A4%8D%E7%94%A8"><span class="nav-number">2.1.1.</span> <span class="nav-text">2.2 刷屏线程缓冲区复用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E5%88%B7%E5%B1%8F%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6%E4%BC%98%E5%8C%96"><span class="nav-number">3.</span> <span class="nav-text">3. 刷屏线程调度优化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-SPI-%E4%BC%A0%E8%BE%93%E4%BC%98%E5%8C%96"><span class="nav-number">3.1.</span> <span class="nav-text">5. SPI 传输优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-%E9%81%BF%E5%85%8D%E9%A2%91%E7%B9%81%E5%88%86%E9%85%8D-spi-transfer"><span class="nav-number">3.1.1.</span> <span class="nav-text">5.1 避免频繁分配 spi_transfer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-%E6%89%B9%E9%87%8F%E5%8F%91%E9%80%81%E6%95%B0%E6%8D%AE"><span class="nav-number">3.1.2.</span> <span class="nav-text">5.2 批量发送数据</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-GPIO-%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86%E4%B8%8E%E8%AE%BE%E5%A4%87%E6%A0%91%E8%A7%A3%E6%9E%90"><span class="nav-number">3.2.</span> <span class="nav-text">6. GPIO 错误处理与设备树解析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-%E8%AE%BE%E7%BD%AE%E9%BB%98%E8%AE%A4%E5%80%BC"><span class="nav-number">3.2.1.</span> <span class="nav-text">6.2 设置默认值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E9%94%99%E8%AF%AF%E8%B7%AF%E5%BE%84%E8%B5%84%E6%BA%90%E9%87%8A%E6%94%BE"><span class="nav-number">3.3.</span> <span class="nav-text">7. 错误路径资源释放</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-%E5%85%B6%E4%BB%96"><span class="nav-number">3.4.</span> <span class="nav-text">10. 其他</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -221,7 +222,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://example.com/2026/02/12/2026-2-12-es8311%E5%A3%B0%E5%8D%A1%E8%B0%83%E8%AF%95%E8%AE%B0%E5%BD%95/">
+    <link itemprop="mainEntityOfPage" href="https://example.com/2026/02/16/2026-2-16-SGP30%E4%BC%98%E5%8C%96%E8%AE%B0%E5%BD%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -234,12 +235,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="es8311声卡调试记录 | Koala's blogs">
+      <meta itemprop="name" content=" | Koala's blogs">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          es8311声卡调试记录
+          
         </h1>
 
         <div class="post-meta-container">
@@ -249,18 +250,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2026-02-12 11:42:10 / 修改时间：11:44:02" itemprop="dateCreated datePublished" datetime="2026-02-12T11:42:10+08:00">2026-02-12</time>
+      <time title="创建时间：2026-02-16 16:10:50" itemprop="dateCreated datePublished" datetime="2026-02-16T16:10:50+08:00">2026-02-16</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
+        <i class="far fa-calendar-check"></i>
       </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Linux-%E5%A3%B0%E5%8D%A1%E9%A9%B1%E5%8A%A8/" itemprop="url" rel="index"><span itemprop="name">Linux 声卡驱动</span></a>
-        </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-02-19 21:21:41" itemprop="dateModified" datetime="2026-02-19T21:21:41+08:00">2026-02-19</time>
     </span>
 
   
@@ -270,14 +268,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>0</span>
+      <span>1.4k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>3 分钟</span>
     </span>
 </div>
 
@@ -287,7 +285,37 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
+    <div class="post-body" itemprop="articleBody"><h1 id="SGP30优化："><a href="#SGP30优化：" class="headerlink" title="SGP30优化："></a>SGP30优化：</h1><ol>
+<li><p>使用标准 Linux 错误码（如 <code>-EREMOTEIO</code>、<code>-EFAULT</code>、<code>-EINVAL</code>）代替 <code>-1</code>。</p>
+</li>
+<li><p>日志级别调整,使用 <code>KERN_EMERG</code> 过于夸张，应替换为 <code>KERN_ERR</code>、<code>KERN_INFO</code> 或 <code>dev_err</code>&#x2F;<code>dev_info</code>。</p>
+</li>
+<li><p>并发访问保护,多个进程同时调用 <code>read</code> 可能导致 I2C 总线竞争。</p>
+</li>
+<li><p>修复缓冲区溢出风险<code>read</code> 函数中固定 <code>sgp30_result[6]</code>，但用户传入的 <code>cnt</code> 可能大于 6，导致 <code>copy_to_user</code> 越界。</p>
+</li>
+<li><p>增加电源管理支持，实现 <code>suspend</code> &#x2F; <code>resume</code> 回调，在系统挂起时关闭传感器以节省功耗。</p>
+</li>
+<li><p>添加 sysfs 接口，除字符设备外，提供 sysfs 属性文件（如 <code>co2</code>、<code>tvoc</code>），方便用户空间直接读取数据。</p>
+</li>
+</ol>
+<p>问题1：I2C 传输（如 <code>i2c_transfer</code>）可能引起进程调度（等待硬件响应、中断处理等），能使用哪些互斥方案？<br>可以用互斥锁、信号量，不能用自旋锁</p>
+<p>互斥锁的设计：不会关中断，会让尝试获得锁的应用程序陷入休眠状态（放入等待队列）。当锁被释放后，会唤醒等待队列中的进程</p>
+<p>自旋锁的设计：可能会关中断（不允许进程休眠），用于保护非常短的临界区</p>
+<p>问题2：两个进程同时使用这个驱动程序的read函数，内存空间是一样的吗？</p>
+<h1 id="FBbuffer-SPI-ST7789优化"><a href="#FBbuffer-SPI-ST7789优化" class="headerlink" title="FBbuffer-SPI-ST7789优化:"></a>FBbuffer-SPI-ST7789优化:</h1><h2 id="1-移除冗余的字符设备"><a href="#1-移除冗余的字符设备" class="headerlink" title="1. 移除冗余的字符设备"></a>1. 移除冗余的字符设备</h2><p>2.1 使用连贯 DMA 缓冲区<br>当前用 kzalloc + virt_to_phys 分配显存，存在两个问题：</p>
+<p>kzalloc 不保证物理连续，对于大块内存可能失败</p>
+<h3 id="2-2-刷屏线程缓冲区复用"><a href="#2-2-刷屏线程缓冲区复用" class="headerlink" title="2.2 刷屏线程缓冲区复用"></a>2.2 刷屏线程缓冲区复用</h3><p><code>display_fb_in_thread</code> 每次循环都 <code>kzalloc</code>&#x2F;<code>kfree</code> 临时缓冲区（约 115KB），频繁分配释放降低性能且可能失败。<strong>优化方法</strong>：</p>
+<h1 id="3-刷屏线程调度优化"><a href="#3-刷屏线程调度优化" class="headerlink" title="3. 刷屏线程调度优化"></a>3. 刷屏线程调度优化</h1><p>当前线程无休眠循环，会 100% 占用 CPU。应添加适当延时：</p>
+<h2 id="5-SPI-传输优化"><a href="#5-SPI-传输优化" class="headerlink" title="5. SPI 传输优化"></a>5. SPI 传输优化</h2><h3 id="5-1-避免频繁分配-spi-transfer"><a href="#5-1-避免频繁分配-spi-transfer" class="headerlink" title="5.1 避免频繁分配 spi_transfer"></a>5.1 避免频繁分配 <code>spi_transfer</code></h3><h3 id="5-2-批量发送数据"><a href="#5-2-批量发送数据" class="headerlink" title="5.2 批量发送数据"></a>5.2 批量发送数据</h3><p><code>LCD_SetAddress</code> 中多次调用 <code>st7789_send_one_byte</code>，可合并为一次 SPI 传输，减少 GPIO 翻转：</p>
+<h2 id="6-GPIO-错误处理与设备树解析"><a href="#6-GPIO-错误处理与设备树解析" class="headerlink" title="6. GPIO 错误处理与设备树解析"></a>6. GPIO 错误处理与设备树解析</h2><h3 id="6-2-设置默认值"><a href="#6-2-设置默认值" class="headerlink" title="6.2 设置默认值"></a>6.2 设置默认值</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if (of_property_read_u32(node, &quot;width&quot;, &amp;g_TFTdev.lcd_width))</span><br><span class="line">    g_TFTdev.lcd_width = 240;  // 默认值</span><br><span class="line">if (of_property_read_u32(node, &quot;height&quot;, &amp;g_TFTdev.lcd_height))</span><br><span class="line">    g_TFTdev.lcd_height = 240;</span><br></pre></td></tr></table></figure>
+
+<h2 id="7-错误路径资源释放"><a href="#7-错误路径资源释放" class="headerlink" title="7. 错误路径资源释放"></a>7. 错误路径资源释放</h2><p>probe 中若某步失败，需确保已分配的资源被释放。使用 <code>devm_</code> 系列函数可自动管理，但当前混合了手动和 devm。建议统一使用 <code>devm_</code>（如 <code>devm_gpio_request_one</code>、<code>devm_kzalloc</code>）以简化错误处理。</p>
+<h2 id="10-其他"><a href="#10-其他" class="headerlink" title="10. 其他"></a>10. 其他</h2><ul>
+<li>移除未使用的全局变量 <code>g_pseudo_palette</code> 若不需要控制台支持，可删除 <code>fb_setcolreg</code> 及关联代码。</li>
+<li>检查 <code>spi_write_child_OfThis</code> 中 <code>bits_per_word = 16</code> 是否与 SPI 控制器配置一致（通常 SPI 默认 8 位，设置 16 位需要确保支持，否则会导致传输错误）。若控制器只支持 8 位，可改用 8 位模式发送，但需注意字节序。</li>
+</ul>
+
     </div>
 
     
@@ -295,21 +323,18 @@
     
 
     <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/I2S/" rel="tag"># I2S</a>
-          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2026/02/11/lubancat2%E6%9B%B4%E6%96%B0%E5%86%85%E6%A0%B8%E6%96%B9%E6%B3%95/" rel="prev" title="">
-                  <i class="fa fa-angle-left"></i> 
+                <a href="/2026/02/15/2026-2-15-usb%E9%94%AE%E7%9B%98%E9%A9%B1%E5%8A%A8%E7%A8%8B%E5%BA%8F%E8%B0%83%E8%AF%95%E8%AE%B0%E5%BD%95/" rel="prev" title="USB键盘驱动程序调试记录">
+                  <i class="fa fa-angle-left"></i> USB键盘驱动程序调试记录
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2026/02/13/2026-2-13-can%E9%80%9A%E4%BF%A1%E8%B0%83%E8%AF%95%E8%AE%B0%E5%BD%95/" rel="next" title="CAN通信调试记录">
-                  CAN通信调试记录 <i class="fa fa-angle-right"></i>
+                <a href="/2026/02/19/2026-2-19-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AA%81%E7%A0%B4512%E5%AD%97%E8%8A%82/" rel="next" title="">
+                   <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>

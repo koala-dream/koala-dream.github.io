@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Simplified+Chinese:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=LXGW+WenKai+TC:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/purple/pace-theme-center-atom.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":220,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"vs","dark":"vs"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="p键盘插入Linux板卡的时候，第一个和他通信的驱动程序是谁 抛出盘插入Linux板卡的时候，第一个和他通信的驱动程序是谁 第一步抛出问题：插入Linux板卡的时候，第一个和他通信的驱动程序是谁 答案：主机控制器驱动（例如 ehci-hcd、xhci-hcd）职责 复位设备：向新插入的设备发送复位信号。 分配地址：通过控制传输为设备分配一个唯一的 USB 地址（通常是地址 1，然后重新分配）。 获">
+<meta property="og:type" content="article">
+<meta property="og:title" content="USB键盘驱动程序调试记录">
+<meta property="og:url" content="https://example.com/2026/02/15/2026-2-15-usb%E9%94%AE%E7%9B%98%E9%A9%B1%E5%8A%A8%E7%A8%8B%E5%BA%8F%E8%B0%83%E8%AF%95%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:site_name" content="Koala&#39;s blogs">
+<meta property="og:description" content="p键盘插入Linux板卡的时候，第一个和他通信的驱动程序是谁 抛出盘插入Linux板卡的时候，第一个和他通信的驱动程序是谁 第一步抛出问题：插入Linux板卡的时候，第一个和他通信的驱动程序是谁 答案：主机控制器驱动（例如 ehci-hcd、xhci-hcd）职责 复位设备：向新插入的设备发送复位信号。 分配地址：通过控制传输为设备分配一个唯一的 USB 地址（通常是地址 1，然后重新分配）。 获">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-02-14T16:23:10.000Z">
+<meta property="article:modified_time" content="2026-02-15T07:50:46.211Z">
+<meta property="article:author" content="考拉">
+<meta property="article:tag" content="USB">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://example.com/2026/02/15/2026-2-15-usb%E9%94%AE%E7%9B%98%E9%A9%B1%E5%8A%A8%E7%A8%8B%E5%BA%8F%E8%B0%83%E8%AF%95%E8%AE%B0%E5%BD%95/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://example.com/2026/02/15/2026-2-15-usb%E9%94%AE%E7%9B%98%E9%A9%B1%E5%8A%A8%E7%A8%8B%E5%BA%8F%E8%B0%83%E8%AF%95%E8%AE%B0%E5%BD%95/","path":"2026/02/15/2026-2-15-usb键盘驱动程序调试记录/","title":"USB键盘驱动程序调试记录"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>USB键盘驱动程序调试记录 | Koala's blogs</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/bookmark.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+
+
+
+
+<script async src="/lib/fireworks.js"></script>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Koala's blogs</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">稳定下来后，要好好变强，强到能应对即将到来的危机...</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa-solid fa-user-tie fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa-solid fa-box-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-tools"><a href="/tools/" rel="section"><i class="fa-solid fa-toolbox fa-fw"></i>常用工具</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5"><span class="nav-number">1.</span> <span class="nav-text">第一步</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AD%94%E6%A1%88%EF%BC%9A%E4%B8%BB%E6%9C%BA%E6%8E%A7%E5%88%B6%E5%99%A8%E9%A9%B1%E5%8A%A8%EF%BC%88%E4%BE%8B%E5%A6%82-ehci-hcd%E3%80%81xhci-hcd%EF%BC%89"><span class="nav-number">1.1.</span> <span class="nav-text">答案：主机控制器驱动（例如 ehci-hcd、xhci-hcd）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%81%8C%E8%B4%A3"><span class="nav-number">1.2.</span> <span class="nav-text">职责</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">第二步：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#USB-%E6%A0%B8%E5%BF%83%EF%BC%88USB-Core%EF%BC%89%E7%9A%84%E4%BB%8B%E5%85%A5"><span class="nav-number">2.1.</span> <span class="nav-text">USB 核心（USB Core）的介入</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">第三步：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%B9%E9%85%8D%E5%85%B7%E4%BD%93%E7%9A%84%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8"><span class="nav-number">3.1.</span> <span class="nav-text">匹配具体的设备驱动</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="考拉"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">考拉</p>
+  <div class="site-description" itemprop="description">山雾之中，有一个老头在磨石，孤零零的，一个人</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/koala-dream" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;koala-dream" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:3592923948@qq.com" title="E-Mail → mailto:3592923948@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://example.com/2026/02/15/2026-2-15-usb%E9%94%AE%E7%9B%98%E9%A9%B1%E5%8A%A8%E7%A8%8B%E5%BA%8F%E8%B0%83%E8%AF%95%E8%AE%B0%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="考拉">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Koala's blogs">
+      <meta itemprop="description" content="山雾之中，有一个老头在磨石，孤零零的，一个人">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="USB键盘驱动程序调试记录 | Koala's blogs">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          USB键盘驱动程序调试记录
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-02-15 00:23:10 / 修改时间：15:50:46" itemprop="dateCreated datePublished" datetime="2026-02-15T00:23:10+08:00">2026-02-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux-USB%E9%A9%B1%E5%8A%A8/" itemprop="url" rel="index"><span itemprop="name">Linux USB驱动</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>4.9k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>9 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>p键盘插入Linux板卡的时候，第一个和他通信的驱动程序是谁</p>
+<p>抛出盘插入Linux板卡的时候，第一个和他通信的驱动程序是谁</p>
+<h1 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h1><p>抛出问题：插入Linux板卡的时候，第一个和他通信的驱动程序是谁</p>
+<h3 id="答案：主机控制器驱动（例如-ehci-hcd、xhci-hcd）"><a href="#答案：主机控制器驱动（例如-ehci-hcd、xhci-hcd）" class="headerlink" title="答案：主机控制器驱动（例如 ehci-hcd、xhci-hcd）"></a>答案：主机控制器驱动（例如 <code>ehci-hcd</code>、<code>xhci-hcd</code>）</h3><h3 id="职责"><a href="#职责" class="headerlink" title="职责"></a>职责</h3><ul>
+<li><strong>复位设备</strong>：向新插入的设备发送复位信号。</li>
+<li><strong>分配地址</strong>：通过控制传输为设备分配一个唯一的 USB 地址（通常是地址 1，然后重新分配）。</li>
+<li><strong>获取设备描述符</strong>：读取设备的基本信息（如厂商 ID、产品 ID、设备类等）。</li>
+<li>这些操作都是在主机控制器驱动的控制下，通过 USB 总线发送数据包完成的。</li>
+</ul>
+<h1 id="第二步："><a href="#第二步：" class="headerlink" title="第二步："></a>第二步：</h1><h3 id="USB-核心（USB-Core）的介入"><a href="#USB-核心（USB-Core）的介入" class="headerlink" title="USB 核心（USB Core）的介入"></a>USB 核心（USB Core）的介入</h3><ul>
+<li>主机控制器驱动将获取到的信息上报给 <strong>USB 核心</strong>（USB Core，即内核中的 <code>usbcore</code> 模块）。</li>
+<li>USB 核心维护着所有已注册的 USB 设备驱动（如 <code>usbhid</code>、<code>usbkbd</code>）以及它们的 <code>usb_device_id</code> 表。</li>
+<li>USB 核心开始枚举过程：读取设备的配置、接口、端点等信息，并创建一个 <code>usb_interface</code> 代表键盘的接口。</li>
+</ul>
+<h1 id="第三步："><a href="#第三步：" class="headerlink" title="第三步："></a>第三步：</h1><h3 id="匹配具体的设备驱动"><a href="#匹配具体的设备驱动" class="headerlink" title="匹配具体的设备驱动"></a>匹配具体的设备驱动</h3><ul>
+<li><p>USB 核心遍历所有已注册的 USB 设备驱动的 <code>id_table</code>，寻找与当前设备匹配的条目。</p>
+</li>
+<li><p>对于标准 USB 键盘，通常匹配的是 <strong>HID 类驱动</strong>（如 <code>usbhid</code> 或你之前看到的 <code>usbkbd</code>）。</p>
+</li>
+<li><p>一旦找到匹配，USB 核心调用该驱动的 <code>probe</code> 函数，并将 <code>usb_interface</code> 交给它。</p>
+</li>
+<li><p>设备驱动（如 <code>usbkbd</code>）在 <code>probe</code> 中初始化设备，注册输入设备，并提交 URB 开始接收键盘数据。</p>
+</li>
+<li><p>至此，键盘才真正可以被用户空间使用。</p>
+</li>
+</ul>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
+<li><strong>第一个与硬件通信的是主机控制器驱动</strong>，它负责最底层的硬件交互和初始化。</li>
+<li><strong>第二个参与的是 USB 核心</strong>，它负责管理枚举和驱动匹配。</li>
+<li><strong>最终具体功能由专门的 USB 设备驱动</strong>（如 HID 驱动）实现。</li>
+</ul>
+<p>HID 驱动是什么？</p>
+<p>通用人类输入设备驱动，当然可以给键盘用</p>
+<p>当HID驱动程序不存在的时候，插入USB键盘，日志打印如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[   26.313520] usb 5-1: new low-speed USB device number 2 using xhci-hcd</span><br><span class="line">[   26.460776] usb 5-1: New USB device found, idVendor=413c, idProduct=2107, bcdDevice= 1.15</span><br><span class="line">[   26.460796] usb 5-1: New USB device strings: Mfr=1, Product=2, SerialNumber=0</span><br><span class="line">[   26.460807] usb 5-1: Product: Dell USB Entry Keyboard</span><br><span class="line">[   26.460817] usb 5-1: Manufacturer: Dell</span><br></pre></td></tr></table></figure>
+
+
+
+<p>插入USB手柄，日志打印</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[  112.056887] usb 3-1: new full-speed USB device number 2 using ohci-platform</span><br><span class="line">[  112.290586] usb 3-1: New USB device found, idVendor=3537, idProduct=2106, bcdDevice= 1.00</span><br><span class="line">[  112.290598] usb 3-1: New USB device strings: Mfr=1, Product=2, SerialNumber=0</span><br><span class="line">[  112.290602] usb 3-1: Product: HID zk</span><br><span class="line">[  112.290607] usb 3-1: Manufacturer: Zikway</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+<p>和USB键盘通讯需要了解的知识</p>
+<ol>
+<li>USB键盘通讯协议</li>
+</ol>
+<p>USB匹配关键步骤：USB 核心在进行接口匹配时，会检查设备中<strong>当前接口</strong>（即 <code>probe</code> 函数传入的 <code>struct usb_interface *iface</code>）的描述符是否匹配这些字段。</p>
+<p>USB设备驱动相关的数据结构：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">usb_device_id</span> </span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="comment">/* which fields to match against? */</span></span><br><span class="line">	__u16		match_flags;	<span class="comment">//位掩码，指定哪些字段需要参与匹配</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">/* Used for product specific matches; range is inclusive */</span></span><br><span class="line">	__u16		idVendor;		<span class="comment">//USB 设备的厂商 ID（Vendor ID）</span></span><br><span class="line">	__u16		idProduct;		<span class="comment">//产品 ID（Product ID）</span></span><br><span class="line">	__u16		bcdDevice_lo;	<span class="comment">// 设备版本号上限</span></span><br><span class="line">	__u16		bcdDevice_hi;	<span class="comment">// 设备版本号下限</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">/* 匹配设备描述符中的类、子类和协议 */</span></span><br><span class="line">	__u8		bDeviceClass;		<span class="comment">// 基本设设备类，如通信设备类（CDC）,HID设备,集线器</span></span><br><span class="line">	__u8		bDeviceSubClass;	<span class="comment">// 子类，一般都是USB_INTERFACE_SUBCLASS_BOOT</span></span><br><span class="line">	__u8		bDeviceProtocol;	<span class="comment">// 协议，定义具体传输协议，如鼠标，键盘，手柄</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">/* 匹配接口描述符中的类、子类和协议 */</span></span><br><span class="line">	__u8		bInterfaceClass;	<span class="comment">// 和设备描述符中的一样？</span></span><br><span class="line">	__u8		bInterfaceSubClass;</span><br><span class="line">	__u8		bInterfaceProtocol;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* Used for vendor-specific interface matches */</span></span><br><span class="line">	__u8		bInterfaceNumber;	<span class="comment">// 指定要匹配的接口编号（用不到）</span></span><br><span class="line">    </span><br><span class="line">    ......</span><br><span class="line">&#125;;</span><br><span class="line">重要宏定义</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> USB_INTERFACE_INFO(cl, sc, pr) \</span></span><br><span class="line"><span class="meta">	.match_flags = USB_DEVICE_ID_MATCH_INT_INFO, \</span></span><br><span class="line"><span class="meta">	.bInterfaceClass = (cl), \</span></span><br><span class="line"><span class="meta">	.bInterfaceSubClass = (sc), \</span></span><br><span class="line"><span class="meta">	.bInterfaceProtocol = (pr)</span></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">usb_interface</span> </span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">usb_host_interface</span> *<span class="title">altsetting</span>;</span>	<span class="comment">/* 指向一个由 struct usb_host_interface 组成的数组 */</span></span><br><span class="line">	</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">usb_host_interface</span> *<span class="title">cur_altsetting</span>;</span>	<span class="comment">/* 指向当前正在使用的那个备用设置。驱动程序通常使用这个指针来访问当前有效的接口描述符和端点信息。 */</span></span><br><span class="line">	</span><br><span class="line">	<span class="type">unsigned</span> num_altsetting;	<span class="comment">/* 记录 altsetting 数组中备用设置的个数 */</span></span><br><span class="line"></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">device</span> <span class="title">dev</span>;</span>		<span class="comment">/* 内核设备模型的核心结构，将接口表示为设备模型中的一个设备。这使得接口可以在 sysfs 中出现（如 /sys/bus/usb/devices/...） */</span></span><br><span class="line">	</span><br><span class="line">    ......</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">usb_device</span> </span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="type">int</span>		devnum;		<span class="comment">/* 枚举过程中由 USB 核心分配给设备的唯一地址（1～127） */</span> </span><br><span class="line">	<span class="type">char</span>		devpath[<span class="number">16</span>];	<span class="comment">/* 设备路径字符串，例如 &quot;1-2.3&quot;，表示设备在 USB 拓扑中的位置（总线号-端口号.子端口号...） */</span></span><br><span class="line">	u32		route;</span><br><span class="line">	<span class="class"><span class="keyword">enum</span> <span class="title">usb_device_state</span>	<span class="title">state</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">enum</span> <span class="title">usb_device_speed</span>	<span class="title">speed</span>;</span></span><br><span class="line">	<span class="type">unsigned</span> <span class="type">int</span>		rx_lanes;</span><br><span class="line">	<span class="type">unsigned</span> <span class="type">int</span>		tx_lanes;</span><br><span class="line"></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">usb_tt</span>	*<span class="title">tt</span>;</span></span><br><span class="line">	<span class="type">int</span>		ttport;</span><br><span class="line"></span><br><span class="line">	<span class="type">unsigned</span> <span class="type">int</span> toggle[<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">usb_device</span> *<span class="title">parent</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">usb_bus</span> *<span class="title">bus</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">usb_host_endpoint</span> <span class="title">ep0</span>;</span></span><br><span class="line"></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">device</span> <span class="title">dev</span>;</span></span><br><span class="line"></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">usb_device_descriptor</span> <span class="title">descriptor</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">usb_host_bos</span> *<span class="title">bos</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">usb_host_config</span> *<span class="title">config</span>;</span></span><br><span class="line"></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">usb_host_config</span> *<span class="title">actconfig</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">usb_host_endpoint</span> *<span class="title">ep_in</span>[16];</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">usb_host_endpoint</span> *<span class="title">ep_out</span>[16];</span></span><br><span class="line"></span><br><span class="line">	<span class="type">char</span> **rawdescriptors;</span><br><span class="line"></span><br><span class="line">	<span class="type">unsigned</span> <span class="type">short</span> bus_mA;</span><br><span class="line">	u8 portnum;</span><br><span class="line">	u8 level;</span><br><span class="line"></span><br><span class="line">	<span class="type">unsigned</span> can_submit:<span class="number">1</span>;</span><br><span class="line">	<span class="type">unsigned</span> persist_enabled:<span class="number">1</span>;</span><br><span class="line">	<span class="type">unsigned</span> have_langid:<span class="number">1</span>;</span><br><span class="line">	<span class="type">unsigned</span> authorized:<span class="number">1</span>;</span><br><span class="line">	<span class="type">unsigned</span> authenticated:<span class="number">1</span>;</span><br><span class="line">	<span class="type">unsigned</span> wusb:<span class="number">1</span>;</span><br><span class="line">	<span class="type">unsigned</span> lpm_capable:<span class="number">1</span>;</span><br><span class="line">	<span class="type">unsigned</span> usb2_hw_lpm_capable:<span class="number">1</span>;</span><br><span class="line">	<span class="type">unsigned</span> usb2_hw_lpm_besl_capable:<span class="number">1</span>;</span><br><span class="line">	<span class="type">unsigned</span> usb2_hw_lpm_enabled:<span class="number">1</span>;</span><br><span class="line">	<span class="type">unsigned</span> usb2_hw_lpm_allowed:<span class="number">1</span>;</span><br><span class="line">	<span class="type">unsigned</span> usb3_lpm_u1_enabled:<span class="number">1</span>;</span><br><span class="line">	<span class="type">unsigned</span> usb3_lpm_u2_enabled:<span class="number">1</span>;</span><br><span class="line">	<span class="type">int</span> string_langid;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* static strings from the device */</span></span><br><span class="line">	<span class="type">char</span> *product;</span><br><span class="line">	<span class="type">char</span> *manufacturer;</span><br><span class="line">	<span class="type">char</span> *serial;</span><br><span class="line"></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">list_head</span> <span class="title">filelist</span>;</span></span><br><span class="line"></span><br><span class="line">	<span class="type">int</span> maxchild;</span><br><span class="line"></span><br><span class="line">	u32 quirks;</span><br><span class="line">	<span class="type">atomic_t</span> urbnum;</span><br><span class="line"></span><br><span class="line">	<span class="type">unsigned</span> <span class="type">long</span> active_duration;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> CONFIG_PM</span></span><br><span class="line">	<span class="type">unsigned</span> <span class="type">long</span> connect_time;</span><br><span class="line"></span><br><span class="line">	<span class="type">unsigned</span> do_remote_wakeup:<span class="number">1</span>;</span><br><span class="line">	<span class="type">unsigned</span> reset_resume:<span class="number">1</span>;</span><br><span class="line">	<span class="type">unsigned</span> port_is_suspended:<span class="number">1</span>;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">wusb_dev</span> *<span class="title">wusb_dev</span>;</span></span><br><span class="line">	<span class="type">int</span> slot_id;</span><br><span class="line">	<span class="class"><span class="keyword">enum</span> <span class="title">usb_device_removable</span> <span class="title">removable</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">usb2_lpm_parameters</span> <span class="title">l1_params</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">usb3_lpm_parameters</span> <span class="title">u1_params</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">usb3_lpm_parameters</span> <span class="title">u2_params</span>;</span></span><br><span class="line">	<span class="type">unsigned</span> lpm_disable_count;</span><br><span class="line"></span><br><span class="line">	u16 hub_delay;</span><br><span class="line"></span><br><span class="line">	ANDROID_KABI_RESERVE(<span class="number">1</span>);</span><br><span class="line">	ANDROID_KABI_RESERVE(<span class="number">2</span>);</span><br><span class="line">	ANDROID_KABI_RESERVE(<span class="number">3</span>);</span><br><span class="line">	ANDROID_KABI_RESERVE(<span class="number">4</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">usb_host_interface</span> </span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">usb_interface_descriptor</span>	<span class="title">desc</span>;</span>	<span class="comment">//标准的 USB 接口描述符</span></span><br><span class="line"></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">usb_host_endpoint</span> *<span class="title">endpoint</span>;</span>	<span class="comment">//端点数组</span></span><br><span class="line">	</span><br><span class="line">    ......</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">struct usb_host_endpoint &#123;</span><br><span class="line">	struct usb_endpoint_descriptor		desc;</span><br><span class="line">	struct usb_ss_ep_comp_descriptor	ss_ep_comp;</span><br><span class="line">	struct usb_ssp_isoc_ep_comp_descriptor	ssp_isoc_ep_comp;</span><br><span class="line">	struct list_head		urb_list;</span><br><span class="line">	void				*hcpriv;</span><br><span class="line">	struct ep_device		*ep_dev;	/* For sysfs info */</span><br><span class="line"></span><br><span class="line">	unsigned char *extra;   /* Extra descriptors */</span><br><span class="line">	int extralen;</span><br><span class="line">	int enabled;</span><br><span class="line">	int streams;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/USB/" rel="tag"># USB</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/02/13/2026-2-13-can%E9%80%9A%E4%BF%A1%E8%B0%83%E8%AF%95%E8%AE%B0%E5%BD%95/" rel="prev" title="CAN通信调试记录">
+                  <i class="fa fa-angle-left"></i> CAN通信调试记录
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/02/16/2026-2-16-SGP30%E4%BC%98%E5%8C%96%E8%AE%B0%E5%BD%95/" rel="next" title="">
+                   <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">考拉</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+
+
+
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+  
+  
+  
+  
+
+
+  
+</body>
+</html>
